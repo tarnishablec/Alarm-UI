@@ -146,9 +146,9 @@
 
 		methods: {
 			queryAllList() {
-				return this.$axios.get("/source/all").then(response => {
+				return this.$axios.get("/source/all", {}).then(response => {
 					this.sourcesList = response.data.data;
-					console.log(this.sourcesList)
+					this.showSnackBar('update success');
 				})
 			},
 			querySendTypeList() {
@@ -217,12 +217,12 @@
 					}
 				}
 				if (this.dialogState === "edit") {
-					if (!ResponseHandler.promiseResponseHandler(this.editSource())) {
+					if (!ResponseHandler.promiseResponseHandler(await this.editSource())) {
 						this.showSnackBar('error!');
 						return -1;
 					}
 				}
-				this.showSnackBar('update success');
+
 				this.queryAllList();
 				return 0;
 			},
