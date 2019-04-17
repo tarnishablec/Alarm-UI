@@ -110,7 +110,7 @@
 				],
 
 				pagination: {
-					rowsPerPage: 15,
+					rowsPerPage: 10,
 					descending: true,
 					page: 1,
 					sortBy: '',

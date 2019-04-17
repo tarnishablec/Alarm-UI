@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-navigation-drawer dark app v-model="drawerL" clipped>
+		<v-navigation-drawer v-if="$store.state.hasLogin" dark app v-model="drawerL" clipped>
 			<v-list>
 				<v-list-tile>
 					<v-list-tile-action>
@@ -9,20 +9,13 @@
 					<v-list-tile-title>Home</v-list-tile-title>
 				</v-list-tile>
 
-				<v-list-group
-								prepend-icon="account_circle"
-								value="true"
-				>
+				<v-list-group prepend-icon="account_circle" value="true">
 					<template v-slot:activator>
 						<v-list-tile>
 							<v-list-tile-title>Users</v-list-tile-title>
 						</v-list-tile>
 					</template>
-					<v-list-group
-									no-action
-									sub-group
-									value="true"
-					>
+					<v-list-group no-action sub-group value="true">
 						<template v-slot:activator>
 							<v-list-tile>
 								<v-list-tile-title>Admin</v-list-tile-title>
@@ -65,14 +58,16 @@
 			</v-list>
 		</v-navigation-drawer>
 
-		<v-navigation-drawer dark app v-model="drawerR" right clipped>
+		<v-navigation-drawer v-if="$store.state.hasLogin" dark app v-model="drawerR" right clipped>
 
 		</v-navigation-drawer>
 		<v-toolbar dark app height="40px" clipped-left clipped-right>
-			<v-toolbar-side-icon @click="drawerL=!drawerL"/>
+			<transition>
+				<v-toolbar-side-icon v-if="$store.state.hasLogin" @click="drawerL=!drawerL"/>
+			</transition>
 
 			<v-toolbar-title class="text-uppercase">
-				<span class="font-weight-bold text-none" @click="$router.push('/about')">Alarm-UI</span>
+				<span class="font-weight-bold text-none">Alarm-UI</span>
 			</v-toolbar-title>
 
 			<v-spacer/>
@@ -99,7 +94,7 @@
 			},
 		data() {
 			return {
-				drawerL: true,
+				drawerL: false,
 				drawerR: false,
 				admins: [
 					['Management', 'people_outline'],

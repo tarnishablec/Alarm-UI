@@ -1,6 +1,9 @@
 .flex-row{
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .flex-column{
@@ -8,7 +11,7 @@
     flex-direction: column;
 }
 
-.self-align-center{
+.self-center-x{
     left: 50%;
     transform: translate(-50%);
     position: relative;
